@@ -2,8 +2,8 @@
 import { crud, httpEndpoint, onCreatedCounter, onUpdatedAudit } from "@mock/shared";
 
 const R = "customers";
-
-export const list = httpEndpoint({"method":"GET","auth":"member","minRole":"viewer"}, crud.list(R));
+// ⚠️ F-001 Broken authentication: Customer list is reachable with no token; tenant comes from the query string.
+export const list = httpEndpoint({"method":"GET","auth":"public"}, crud.list(R));
 
 export const get = httpEndpoint({"method":"GET","auth":"member","minRole":"viewer"}, crud.get(R));
 

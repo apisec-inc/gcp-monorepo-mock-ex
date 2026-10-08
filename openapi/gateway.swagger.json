@@ -2524,11 +2524,6 @@
     "/v1/customers/customers": {
       "get": {
         "operationId": "customersCustomersList",
-        "security": [
-          {
-            "firebase": []
-          }
-        ],
         "parameters": [],
         "x-google-backend": {
           "address": "https://us-central1-demo-apimock.cloudfunctions.net/customers-customers-list"

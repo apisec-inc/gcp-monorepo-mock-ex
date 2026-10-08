@@ -1,7 +1,7 @@
 {
   "project": "demo-apimock",
   "region": "us-central1",
-  "generatedAt": "2026-10-06T19:07:52.183Z",
+  "generatedAt": "2026-10-08T23:23:19.961Z",
   "functions": [
     {
       "functionId": "catalog-products-list",
@@ -862,7 +862,7 @@
       "auth": "member",
       "minRole": "viewer",
       "clientAccess": "member-read",
-      "finding": null
+      "finding": "F-002"
     },
     {
       "functionId": "orders-orders-create",
@@ -1681,10 +1681,10 @@
       "path": "/v1/customers/customers",
       "resource": "customers",
       "action": "list",
-      "auth": "member",
-      "minRole": "viewer",
+      "auth": "public",
+      "minRole": null,
       "clientAccess": "member-read",
-      "finding": null
+      "finding": "F-001"
     },
     {
       "functionId": "customers-customers-get",
@@ -2680,7 +2680,7 @@
       "action": "list",
       "auth": "member",
       "minRole": "viewer",
-      "clientAccess": "server-only",
+      "clientAccess": "public-read",
       "finding": null
     },
     {
@@ -2693,7 +2693,7 @@
       "action": "get",
       "auth": "member",
       "minRole": "viewer",
-      "clientAccess": "server-only",
+      "clientAccess": "public-read",
       "finding": null
     },
     {
@@ -2706,7 +2706,7 @@
       "action": "create",
       "auth": "member",
       "minRole": "admin",
-      "clientAccess": "server-only",
+      "clientAccess": "public-read",
       "finding": null
     },
     {
@@ -2719,7 +2719,7 @@
       "action": "update",
       "auth": "member",
       "minRole": "admin",
-      "clientAccess": "server-only",
+      "clientAccess": "public-read",
       "finding": null
     },
     {
@@ -2732,7 +2732,7 @@
       "action": "delete",
       "auth": "member",
       "minRole": "admin",
-      "clientAccess": "server-only",
+      "clientAccess": "public-read",
       "finding": null
     },
     {
@@ -4228,7 +4228,7 @@
       "auth": "member",
       "minRole": "admin",
       "clientAccess": "server-only",
-      "finding": null
+      "finding": "F-003"
     },
     {
       "functionId": "identity-users-remove",

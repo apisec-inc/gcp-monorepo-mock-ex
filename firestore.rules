@@ -196,8 +196,10 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    match /payments/{docId} {  // server-only
-      allow read, write: if false;
+    match /payments/{docId} {  // public-read
+      // ⚠️ F-004 Over-permissive Firestore rule: Payments collection readable by anyone with the web config.
+      allow read: if true;
+      allow write: if false;
     }
 
     match /paymentMethods/{docId} {  // server-only

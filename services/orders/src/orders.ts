@@ -4,8 +4,8 @@ import { crud, httpEndpoint, onCreatedCounter, onUpdatedAudit } from "@mock/shar
 const R = "orders";
 
 export const list = httpEndpoint({"method":"GET","auth":"member","minRole":"viewer"}, crud.list(R));
-
-export const get = httpEndpoint({"method":"GET","auth":"member","minRole":"viewer"}, crud.get(R));
+// ⚠️ F-002 BOLA / IDOR: Any signed-in user can read any tenant's order by passing ?tenantId=.
+export const get = httpEndpoint({"method":"GET","auth":"member","minRole":"viewer","tenantCheck":false}, crud.get(R));
 
 export const create = httpEndpoint({"method":"POST","auth":"member","minRole":"editor"}, crud.create(R));
 

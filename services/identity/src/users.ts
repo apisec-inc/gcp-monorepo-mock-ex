@@ -8,8 +8,8 @@ export const list = httpEndpoint({"method":"GET","auth":"member","minRole":"view
 export const get = httpEndpoint({"method":"GET","auth":"member","minRole":"viewer"}, crud.get(R));
 
 export const create = httpEndpoint({"method":"POST","auth":"member","minRole":"admin"}, crud.create(R));
-
-export const update = httpEndpoint({"method":"PATCH","auth":"member","minRole":"admin"}, crud.update(R));
+// ⚠️ F-003 Mass assignment: PATCH body is written as-is, so callers can set role/tenantId fields.
+export const update = httpEndpoint({"method":"PATCH","auth":"member","minRole":"admin"}, crud.update(R, {"massAssignment":true}));
 
 export const remove = httpEndpoint({"method":"DELETE","auth":"member","minRole":"admin"}, crud.remove(R));
 
