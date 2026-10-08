@@ -1,0 +1,122 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": [
+    {
+      "source": "services/catalog/dist",
+      "codebase": "catalog",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-catalog build"
+      ]
+    },
+    {
+      "source": "services/orders/dist",
+      "codebase": "orders",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-orders build"
+      ]
+    },
+    {
+      "source": "services/customers/dist",
+      "codebase": "customers",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-customers build"
+      ]
+    },
+    {
+      "source": "services/billing/dist",
+      "codebase": "billing",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-billing build"
+      ]
+    },
+    {
+      "source": "services/inventory/dist",
+      "codebase": "inventory",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-inventory build"
+      ]
+    },
+    {
+      "source": "services/identity/dist",
+      "codebase": "identity",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-identity build"
+      ]
+    },
+    {
+      "source": "services/content/dist",
+      "codebase": "content",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-content build"
+      ]
+    },
+    {
+      "source": "services/analytics/dist",
+      "codebase": "analytics",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-analytics build"
+      ]
+    },
+    {
+      "source": "services/messaging/dist",
+      "codebase": "messaging",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-messaging build"
+      ]
+    },
+    {
+      "source": "services/ops/dist",
+      "codebase": "ops",
+      "runtime": "nodejs22",
+      "predeploy": [
+        "pnpm --dir \"$PROJECT_DIR\" --filter @mock/svc-ops build"
+      ]
+    }
+  ],
+  "hosting": {
+    "public": "apps/web/dist",
+    "ignore": [
+      "**/.*"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "pubsub": {
+      "port": 8085
+    },
+    "hosting": {
+      "port": 5050
+    },
+    "ui": {
+      "enabled": true,
+      "port": 4000
+    },
+    "singleProjectMode": true
+  }
+}

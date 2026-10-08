@@ -1,0 +1,15 @@
+{
+  "_comment": "Applied only with `pnpm generate:findings`. Deliberate, labeled weaknesses so a scanner has something real to find. Never deploy these to a real project.",
+  "endpoints": [
+    { "id": "F-001", "resource": "customers", "action": "list", "override": { "auth": "public" },
+      "title": "Broken authentication", "description": "Customer list is reachable with no token; tenant comes from the query string." },
+    { "id": "F-002", "resource": "orders", "action": "get", "override": { "tenantCheck": false },
+      "title": "BOLA / IDOR", "description": "Any signed-in user can read any tenant's order by passing ?tenantId=." },
+    { "id": "F-003", "resource": "users", "action": "update", "override": { "massAssignment": true },
+      "title": "Mass assignment", "description": "PATCH body is written as-is, so callers can set role/tenantId fields." }
+  ],
+  "rules": [
+    { "id": "F-004", "resource": "payments", "access": "public-read",
+      "title": "Over-permissive Firestore rule", "description": "Payments collection readable by anyone with the web config." }
+  ]
+}

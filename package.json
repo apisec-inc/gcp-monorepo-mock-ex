@@ -1,0 +1,24 @@
+{
+  "name": "gcp-monorepo-mock",
+  "private": true,
+  "packageManager": "pnpm@12.9.1",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "generate:small": "node scripts/generate.mjs --limit 2",
+    "generate:findings": "node scripts/generate.mjs --with-findings",
+    "build": "pnpm -r --filter \"./services/*\" build",
+    "typecheck": "pnpm -r typecheck",
+    "emulators": "pnpm build && firebase emulators:start --project demo-apimock",
+    "gateway:dev": "node tests/api/dev-gateway.mjs",
+    "test:rules": "firebase emulators:exec --only firestore --project demo-apimock \"pnpm --filter @mock/rules-tests test\"",
+    "test:smoke": "node tests/api/smoke.mjs",
+    "web:dev": "pnpm --filter @mock/web dev"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "firebase-admin": "^14.5.0",
+    "firebase-tools": "^15.32.1",
+    "typescript": "^5.9.3"
+  }
+}

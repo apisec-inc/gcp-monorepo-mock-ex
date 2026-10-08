@@ -1,0 +1,12 @@
+packages:
+  - "packages/*"
+  - "services/*"
+  - "apps/*"
+  - "tests/*"
+allowBuilds:
+  '@firebase/util': true
+  esbuild: true
+  protobufjs: true
+  re2: true
+minimumReleaseAgeExclude:
+  - vite@8.3.3

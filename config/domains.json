@@ -1,0 +1,43 @@
+{
+  "project": "demo-apimock",
+  "region": "us-central1",
+  "_accessLevels": {
+    "public-read": "Anyone (even signed out) can read; only functions write",
+    "member-read": "Signed-in members of the tenant can read; only functions write",
+    "member-write": "Members read; editors+ create/update; admins delete — directly from the client",
+    "owner": "Members can read/write only docs where ownerUid == their uid",
+    "server-only": "No client access at all; only functions (Admin SDK) touch it"
+  },
+  "domains": [
+    { "name": "catalog", "defaultAccess": "member-read", "writeRole": "editor",
+      "resources": ["products","categories","brands","variants","priceLists","bundles","attributes","reviews","wishlists","recommendations"],
+      "access": { "products": "public-read", "categories": "public-read", "brands": "public-read", "reviews": "owner", "wishlists": "owner" } },
+    { "name": "orders", "defaultAccess": "member-read", "writeRole": "editor",
+      "resources": ["orders","carts","checkouts","returns","refunds","shipments","invoices","quotes","fulfillments","giftCards"],
+      "access": { "carts": "owner" } },
+    { "name": "customers", "defaultAccess": "member-read", "writeRole": "editor",
+      "resources": ["customers","addresses","contacts","segments","loyaltyAccounts","preferences","consents","notes","tickets","surveys"],
+      "access": { "preferences": "owner", "consents": "owner", "notes": "member-write" } },
+    { "name": "billing", "defaultAccess": "server-only", "writeRole": "admin",
+      "resources": ["subscriptions","plans","payments","paymentMethods","coupons","credits","taxRates","ledgers","payouts","disputes"],
+      "access": { "plans": "public-read" } },
+    { "name": "inventory", "defaultAccess": "member-write", "writeRole": "editor",
+      "resources": ["warehouses","stockLevels","transfers","suppliers","purchaseOrders","receipts","adjustments","bins","lots","cycleCounts"],
+      "access": {} },
+    { "name": "identity", "defaultAccess": "server-only", "writeRole": "admin",
+      "resources": ["users","teams","roles","invitations","apiKeys","sessions","devices","auditLogs","mfaFactors","ssoConnections"],
+      "access": { "teams": "member-read", "invitations": "member-read", "devices": "owner" } },
+    { "name": "content", "defaultAccess": "member-write", "writeRole": "editor",
+      "resources": ["pages","articles","media","menus","banners","templates","translations","assets","forms","redirects"],
+      "access": { "pages": "public-read", "articles": "public-read", "menus": "public-read", "redirects": "public-read" } },
+    { "name": "analytics", "defaultAccess": "member-read", "writeRole": "editor",
+      "resources": ["reports","dashboards","metrics","events","funnels","cohorts","exports","alerts","goals","experiments"],
+      "access": { "dashboards": "member-write", "events": "server-only" } },
+    { "name": "messaging", "defaultAccess": "server-only", "writeRole": "editor",
+      "resources": ["notifications","emails","smsMessages","pushTokens","campaigns","channels","conversations","webhooks","subscriberLists","deliveries"],
+      "access": { "notifications": "owner", "conversations": "member-write" } },
+    { "name": "ops", "defaultAccess": "server-only", "writeRole": "admin",
+      "resources": ["jobs","schedules","featureFlags","configs","incidents","healthChecks","backups","migrations","integrations","maintenanceWindows"],
+      "access": { "featureFlags": "member-read" } }
+  ]
+}
